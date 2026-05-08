@@ -1,0 +1,41 @@
+{
+    "target": "google.com",
+    "ip": "142.250.195.78",
+    "timestamp": "2026-05-08T17:26:55.860635",
+    "open_ports": [
+        {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 200 OK\r\nContent-Type: text/html; charset=ISO-8859-1\r\nContent-Security-Policy-Report-Only: o"
+        },
+        {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "No banner"
+        }
+    ],
+    "missing_headers": [
+        "Content-Security-Policy",
+        "X-Content-Type-Options",
+        "Strict-Transport-Security"
+    ],
+    "weak_configs": [],
+    "vulnerabilities": [
+        {
+            "title": "Missing Header: Content-Security-Policy",
+            "description": "The Content-Security-Policy security header is not set.",
+            "severity": "Low"
+        },
+        {
+            "title": "Missing Header: X-Content-Type-Options",
+            "description": "The X-Content-Type-Options security header is not set.",
+            "severity": "Low"
+        },
+        {
+            "title": "Missing Header: Strict-Transport-Security",
+            "description": "The Strict-Transport-Security security header is not set.",
+            "severity": "Low"
+        }
+    ],
+    "score": 85
+}

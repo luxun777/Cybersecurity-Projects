@@ -1,0 +1,21 @@
+{
+    "target": "facebook.com",
+    "ip": "57.144.52.1",
+    "timestamp": "2026-05-08T17:32:43.641483",
+    "open_ports": [
+        {
+            "port": 80,
+            "service": "HTTP",
+            "banner": "HTTP/1.1 301 Moved Permanently\r\nLocation: https:///\r\nContent-Type: text/plain\r\nServer: proxygen-bolt"
+        },
+        {
+            "port": 443,
+            "service": "HTTPS",
+            "banner": "\u0015\u0003\u0003\u0000\u0002\u00022"
+        }
+    ],
+    "missing_headers": [],
+    "weak_configs": [],
+    "vulnerabilities": [],
+    "score": 100
+}

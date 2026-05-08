@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulnerability Scanner | Security Analytics</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-shield-halved"></i>
+                <h2>VulnScan</h2>
+            </div>
+            <nav class="nav-menu">
+                <a href="#" class="nav-item active"><i class="fa-solid fa-chart-pie"></i> Dashboard</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-radar"></i> Active Scans</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-file-contract"></i> Reports</a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i> Settings</a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <header class="top-header">
+                <h1>Security Dashboard</h1>
+                <div class="user-profile">
+                    <span class="status-indicator online"></span>
+                    <p>System Ready</p>
+                </div>
+            </header>
+
+            <!-- Scan Input Area -->
+            <section class="scan-input-section glass-panel">
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-globe input-icon"></i>
+                    <input type="text" id="targetInput" placeholder="Enter Target IP or Domain (e.g., scanme.nmap.org or 192.168.1.1)" autocomplete="off">
+                    <button id="scanBtn" class="glow-button">
+                        <i class="fa-solid fa-play"></i> Initiate Scan
+                    </button>
+                </div>
+                <div class="scan-status" id="scanStatus" style="display: none;">
+                    <div class="radar-container">
+                        <div class="radar-sweep"></div>
+                    </div>
+                    <p id="statusText">Scanning target...</p>
+                </div>
+            </section>
+
+            <!-- Results Dashboard (Hidden Initially) -->
+            <section class="dashboard-grid" id="resultsDashboard" style="display: none;">
+                
+                <!-- Score Card -->
+                <div class="glass-panel score-card">
+                    <h3>Security Score</h3>
+                    <div class="score-container">
+                        <svg class="score-circle" viewBox="0 0 100 100">
+                            <circle class="circle-bg" cx="50" cy="50" r="45"></circle>
+                            <circle class="circle-progress" cx="50" cy="50" r="45" id="scoreCircle"></circle>
+                        </svg>
+                        <div class="score-value" id="scoreValue">100</div>
+                    </div>
+                    <p id="scoreLabel" class="score-label">Excellent</p>
+                </div>
+
+                <!-- Threat Level Chart -->
+                <div class="glass-panel chart-card">
+                    <h3>Vulnerabilities by Severity</h3>
+                    <canvas id="severityChart"></canvas>
+                </div>
+
+                <!-- Summary Stats -->
+                <div class="glass-panel stats-card">
+                    <h3>Scan Summary</h3>
+                    <div class="stat-item">
+                        <i class="fa-solid fa-network-wired stat-icon blue"></i>
+                        <div>
+                            <p class="stat-title">Open Ports</p>
+                            <h4 id="openPortsCount">0</h4>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fa-solid fa-file-code stat-icon yellow"></i>
+                        <div>
+                            <p class="stat-title">Missing Headers</p>
+                            <h4 id="missingHeadersCount">0</h4>
+                        </div>
+                    </div>
+                    <div class="stat-item">
+                        <i class="fa-solid fa-bug stat-icon red"></i>
+                        <div>
+                            <p class="stat-title">Total Risks</p>
+                            <h4 id="totalRisksCount">0</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detailed Tables -->
+                <div class="glass-panel details-card full-width">
+                    <div class="card-header">
+                        <h3>Detailed Findings</h3>
+                        <button id="downloadReportBtn" class="secondary-button" style="display: none;">
+                            <i class="fa-solid fa-download"></i> Download Report
+                        </button>
+                    </div>
+                    
+                    <div class="tabs">
+                        <button class="tab-btn active" data-target="ports">Open Ports</button>
+                        <button class="tab-btn" data-target="vulnerabilities">Vulnerabilities</button>
+                        <button class="tab-btn" data-target="headers">Headers</button>
+                    </div>
+
+                    <div class="tab-content active" id="ports-tab">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Port</th>
+                                    <th>Service</th>
+                                    <th>Banner</th>
+                                </tr>
+                            </thead>
+                            <tbody id="portsTableBody">
+                                <!-- Populated via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="tab-content" id="vulnerabilities-tab" style="display: none;">
+                        <div class="vulnerability-list" id="vulnList">
+                            <!-- Populated via JS -->
+                        </div>
+                    </div>
+
+                    <div class="tab-content" id="headers-tab" style="display: none;">
+                        <ul class="header-list" id="headersList">
+                            <!-- Populated via JS -->
+                        </ul>
+                    </div>
+
+                </div>
+
+            </section>
+        </main>
+    </div>
+    
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
