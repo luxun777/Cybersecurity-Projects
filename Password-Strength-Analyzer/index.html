@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Strength Analyzer</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="background-effects">
+        <div class="glow-orb blue"></div>
+        <div class="glow-orb purple"></div>
+    </div>
+    
+    <div class="container">
+        <div class="glass-card">
+            <header>
+                <i class="fa-solid fa-shield-halved fa-2x cyber-icon"></i>
+                <h1>Password Analyzer</h1>
+                <p>Test your password against advanced cybersecurity standards.</p>
+            </header>
+            <div class="input-group">
+                <div class="input-wrapper">
+                    <i class="fa-solid fa-lock input-icon"></i>
+                    <input type="password" id="password-input" placeholder="Enter your password..." autocomplete="off">
+                    <button type="button" id="toggle-visibility" class="icon-btn" aria-label="Toggle password visibility">
+                        <i class="fa-regular fa-eye" id="visibility-icon"></i>
+                    </button>
+                    <button type="button" id="copy-btn" class="icon-btn" aria-label="Copy password">
+                        <i class="fa-regular fa-copy"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="strength-meter">
+                <div class="progress-bg">
+                    <div class="progress-bar" id="progress-bar"></div>
+                </div>
+                <div class="strength-info">
+                    <span class="strength-label">Strength: <strong id="strength-text">None</strong></span>
+                    <span class="score-label"><span id="score-text">0</span>/5</span>
+                </div>
+            </div>
+            <div class="suggestions-container" id="suggestions-container">
+                <h3><i class="fa-solid fa-circle-info"></i> Suggestions</h3>
+                <ul id="suggestions-list">
+                    <li>Please enter a password to see suggestions.</li>
+                </ul>
+            </div>
+            <div class="actions">
+                <button type="button" id="generate-btn" class="cyber-btn">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> Generate Strong Password
+                </button>
+            </div>
+            
+            <div id="toast" class="toast">Copied to clipboard!</div>
+        </div>
+    </div>
+    <!-- Custom JavaScript -->
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
